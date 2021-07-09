@@ -16,11 +16,13 @@ public abstract class WebUIBase {
     private String propFileName = "iselenium.properties";
 
     protected String testcaseName = "";
-    protected String curBrowser = "firefox"; //默认浏览器是firefox
+    protected String curBrowser = "chrome"; //默认浏览器是firefox
     protected WebDriver driver;
     protected WebDriver.Navigation navigation;
     protected String firefoxPath = "";
     protected String chromePath = "";
+    protected String firefoxBin = "";
+
 
     protected int waitTime = 15;
 
@@ -34,6 +36,7 @@ public abstract class WebUIBase {
         logger.info("Load webdriver path");
         firefoxPath = prop.getProperty("FIREFOX_PATH");
         chromePath = prop.getProperty("CHROME_PATH");
+        firefoxBin = prop.getProperty("FIREFOX_BIN");
         logger.info("firefoxPath = " + firefoxPath);
         logger.info("chromePath = " + chromePath);
 
@@ -44,6 +47,7 @@ public abstract class WebUIBase {
 
         //构造webdriver
         if (curBrowser.equalsIgnoreCase("firefox")) {
+            System.setProperty("webdriver.firefox.bin", firefoxBin);
             System.setProperty("webdriver.gecko.driver", firefoxPath);
             driver = new FirefoxDriver();
         } else if (curBrowser.equalsIgnoreCase("chrome")) {
