@@ -16,7 +16,7 @@ public abstract class WebUIBase {
     private String propFileName = "iselenium.properties";
 
     protected String testcaseName = "";
-    protected String curBrowser = "chrome"; //默认浏览器是firefox
+    protected String curBrowser = "firefox"; //默认浏览器是firefox
     protected WebDriver driver;
     protected WebDriver.Navigation navigation;
     protected String firefoxPath = "";
@@ -39,6 +39,7 @@ public abstract class WebUIBase {
         firefoxBin = prop.getProperty("FIREFOX_BIN");
         logger.info("firefoxPath = " + firefoxPath);
         logger.info("chromePath = " + chromePath);
+        logger.info("firefoxBin = " + firefoxBin);
 
         //设定当前运行的浏览器
         //需要在环境变量"currentBrowser"中配置当前运行什么浏览器, 可选值"firefox","chrome","nogui"
